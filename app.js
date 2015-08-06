@@ -7,14 +7,14 @@ app.get('/send',function(req,res,next){
 	console.log("yspeed",req.query.up)
 	console.log('xspeed',req.query.side)
 	robot.moveMouseSmooth(req.query.x, req.query.y);
-	/*if(parseInt(req.query.rotate)>5){
+	if(parseInt(req.query.rotate)>5||parseInt(req.query.rotate)<-5){
 		robot.mouseClick();
-	}*/
-	// if(parseInt(req.query.up)>15){
-	// 	robot.keyTap('pageup');
-	// }else if(parseInt(req.query.up)<(-15)){
-	// 	robot.keyTap('pagedown');
-	// }
+	}
+	if(parseInt(req.query.up)>25){
+		robot.keyTap('pagedown');
+	}else if(parseInt(req.query.up)<(-25)){
+		robot.keyTap('pageup');
+	}
 	res.json("great");
 })
 app.listen(3000);

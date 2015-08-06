@@ -26,12 +26,17 @@ $(document).ready(function(){
 
 	var options = {
 		verbose: true,
-		interval: 30
+		interval: 100
 		// showVideo: true
 		//elementId: 'container'
 	};
 
 	var p = new Panopticon(options);
+
+	var submit = function(){
+		site = site.value;
+		document.getElementById('iframe').setAttribute("src",site);
+	}
 
 	p.onFrame(moveBallAround);
 
@@ -55,12 +60,9 @@ $(document).ready(function(){
 		rotate = rotate + rotateSpeed;
 
 		if (top < 0){top = 0;}
-		if (top > 560){top = 560;}
+		if (top > 800){top = 800;}
 		if (side < 0){side=0;}
-		if (side > 1180){side = 1180}
-
-		console.log("Top", top);
-		console.log("Side", side);
+		if (side > 1300){side = 1300}
 
 		// document.getElementById("temp").style.top = top+"px";
 		// document.getElementById("temp").style.left = side+"px";
@@ -68,9 +70,9 @@ $(document).ready(function(){
 
 		$.ajax({
 		  url: '/send',
-		  data: {y:top, x:side, rotate:obj.twist, up:obj.top, side:obj.left},
-		  success: function(data){
-		  	//console.log(data);
+		  data: {y: top, x: side, rotate: obj.twist, up: obj.top, side: obj.left},
+		  success: function(){
+		  	console.log("success");
 		  }
 		});
 	}
@@ -83,6 +85,9 @@ $(document).ready(function(){
 </head>
   
 <body>
+	<input name="site" value="http://www."><button onClick="submit()">Go</button>
+	<iframe id="iframe" width="1280px" height="800px" src="http://www.facebook.com"></iframe>
+	<!-- <object data=http://www.web-source.net width="1280px" height="800px"> <embed src=http://www.web-source.net width="600" height="400"> </embed> Error: Embedded data could not be displayed. </object> -->
 <!-- <canvas id="container">
 </canvas>
 
@@ -90,9 +95,6 @@ $(document).ready(function(){
 <img id="temp" style="position: absolute; left: 600px; top: 200px;" src="logo.jpg"></img>
 
  -->
- <h1>This exists to make the page long</h1>
-  <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1>
-  <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1><h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1>
 
 </body>
 </html>
