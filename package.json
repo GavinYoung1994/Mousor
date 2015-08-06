@@ -17,5 +17,7 @@
   },
   "homepage": "https://github.com/GavinYoung1994/Mousor#readme",
   "dependencies": {
+    "express": "^4.13.3",
+    "robotjs": "^0.2.3"
   }
 }

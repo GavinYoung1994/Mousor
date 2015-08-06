@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="stuff, to, help, search, engines, not" name="keywords">
+<meta content="What this page is about." name="description">
+<meta content="Display Webcam Stream" name="title">
+<title>Display Webcam Stream</title>
+<script src="js/framehandler.js"></script>
+<script src="js/imgproc.js"></script>
+<script src="js/panopticon.js"></script>
+<script src="js/jquery.js"></script>
+<script>
+
+$(document).ready(function(){
+
+	var top = 200;
+	var side = 600;
+	var rotate = 0;
+
+	var speedUp = 0;
+	var speedSide = 0;
+	var rotateSpeed = 0;
+
+
+	var options = {
+		verbose: true,
+		interval: 100
+		// showVideo: true
+		//elementId: 'container'
+	};
+
+	var p = new Panopticon(options);
+
+	p.onFrame(moveBallAround);
+
+	function moveBallAround(obj){
+
+		//obj has three properties
+		//
+		//left--how much movement left is in the frame
+		//top--how much movement towards the top is in the frame
+		//twist--how much twistiness is in the frame
+
+		speedUp = speedUp + obj.top * .07;
+		speedUp = speedUp * .97; 
+		speedSide = speedSide + obj.left * .07;
+		speedSide = speedSide * .97;
+		rotateSpeed = rotateSpeed + obj.twist * .07;
+		rotateSpeed = rotateSpeed * 0.97
+
+		top = top + speedUp;
+		side = side + speedSide;
+		rotate = rotate + rotateSpeed;
+
+		if (top < 0){top = 0;}
+		if (top > 560){top = 560;}
+		if (side < 0){side=0;}
+		if (side > 1180){side = 1180}
+
+		document.getElementById("temp").style.top = top+"px";
+		document.getElementById("temp").style.left = side+"px";
+		document.getElementById("temp").style.transform = "rotate("+Math.round(rotate)+"deg)";
+
+		$.ajax({
+		  url: '/send',
+		  data: {y:top, x:side, rotate:rotate},
+		  success: function(data){
+		  	console.log(data);
+		  }
+		});
+	}
+
+});
+
+</script>
+<style>
+</style>
+</head>
+  
+<body>
+<canvas id="container">
+</canvas>
+
+
+<img id="temp" style="position: absolute; left: 600px; top: 200px;" src="logo.jpg"></img>
+
+
+
+
+</body>
+</html>
