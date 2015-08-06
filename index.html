@@ -26,7 +26,7 @@ $(document).ready(function(){
 
 	var options = {
 		verbose: true,
-		interval: 100
+		interval: 30
 		// showVideo: true
 		//elementId: 'container'
 	};
@@ -59,15 +59,18 @@ $(document).ready(function(){
 		if (side < 0){side=0;}
 		if (side > 1180){side = 1180}
 
-		document.getElementById("temp").style.top = top+"px";
-		document.getElementById("temp").style.left = side+"px";
-		document.getElementById("temp").style.transform = "rotate("+Math.round(rotate)+"deg)";
+		console.log("Top", top);
+		console.log("Side", side);
+
+		// document.getElementById("temp").style.top = top+"px";
+		// document.getElementById("temp").style.left = side+"px";
+		// document.getElementById("temp").style.transform = "rotate("+Math.round(rotate)+"deg)";
 
 		$.ajax({
 		  url: '/send',
-		  data: {y:top, x:side, rotate:rotate},
+		  data: {y:top, x:side, rotate:obj.twist, up:obj.top, side:obj.left},
 		  success: function(data){
-		  	console.log(data);
+		  	//console.log(data);
 		  }
 		});
 	}
@@ -80,14 +83,16 @@ $(document).ready(function(){
 </head>
   
 <body>
-<canvas id="container">
+<!-- <canvas id="container">
 </canvas>
 
 
 <img id="temp" style="position: absolute; left: 600px; top: 200px;" src="logo.jpg"></img>
 
-
-
+ -->
+ <h1>This exists to make the page long</h1>
+  <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1>
+  <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1><h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1> <h1>This exists to make the page long</h1>
 
 </body>
 </html>
